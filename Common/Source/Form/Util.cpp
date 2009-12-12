@@ -57,6 +57,46 @@ LoadFormProperty(WndForm &form, const TCHAR *control_name, bool value)
   ctl->RefreshDisplay();
 }
 
+
+void
+LoadFormProperty(WndForm &form, const TCHAR *control_name, int value)
+{
+  assert(control_name != NULL);
+
+  WndProperty *ctl = (WndProperty *)form.FindByName(control_name);
+  if (ctl == NULL)
+    return;
+
+  ctl->GetDataField()->SetAsFloat(value);
+  ctl->RefreshDisplay();
+}
+
+void
+LoadFormProperty(WndForm &form, const TCHAR *control_name, unsigned int value)
+{
+  assert(control_name != NULL);
+
+  WndProperty *ctl = (WndProperty *)form.FindByName(control_name);
+  if (ctl == NULL)
+    return;
+
+  ctl->GetDataField()->SetAsInteger(value);
+  ctl->RefreshDisplay();
+}
+
+void
+LoadFormProperty(WndForm &form, const TCHAR *control_name, double value)
+{
+  assert(control_name != NULL);
+
+  WndProperty *ctl = (WndProperty *)form.FindByName(control_name);
+  if (ctl == NULL)
+    return;
+
+  ctl->GetDataField()->Set(value);
+  ctl->RefreshDisplay();
+}
+
 bool
 SaveFormProperty(const WndForm &form, const TCHAR *control_name,
                  bool &value, const TCHAR *registry_name)
@@ -76,3 +116,25 @@ SaveFormProperty(const WndForm &form, const TCHAR *control_name,
   SetToRegistry(registry_name, new_value);
   return true;
 }
+
+/*
+bool
+SaveFormProperty(const WndForm &form, const TCHAR *control_name,
+                 int &value, const TCHAR *registry_name)
+{
+  assert(control_name != NULL);
+  assert(registry_name != NULL);
+
+  const WndProperty *ctl = (const WndProperty *)form.FindByName(control_name);
+  if (ctl == NULL)
+    return false;
+
+  bool new_value = ctl->GetDataField()->GetAsBoolean();
+  if (new_value == value)
+    return false;
+
+  value = new_value;
+  SetToRegistry(registry_name, new_value);
+  return true;
+}
+*/
