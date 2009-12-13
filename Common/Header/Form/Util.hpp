@@ -52,6 +52,12 @@ class WndForm;
  */
 void
 LoadFormProperty(WndForm &form, const TCHAR *control_name, bool value);
+void
+LoadFormProperty(WndForm &form, const TCHAR *control_name, int value);
+void
+LoadFormProperty(WndForm &form, const TCHAR *control_name, unsigned int value);
+void
+LoadFormProperty(WndForm &form, const TCHAR *control_name, double value);
 
 /**
  * Saves a form value into a variable and into the registry.
@@ -62,13 +68,6 @@ LoadFormProperty(WndForm &form, const TCHAR *control_name, bool value);
  * @param registry_name the name of the registry key
  * @return true if the value has been modified
  */
-void
-LoadFormProperty(WndForm &form, const TCHAR *control_name, int value);
-void
-LoadFormProperty(WndForm &form, const TCHAR *control_name, unsigned int value);
-void
-LoadFormProperty(WndForm &form, const TCHAR *control_name, double value);
-
 bool
 SaveFormProperty(const WndForm &form, const TCHAR *control_name,
                  bool &value, const TCHAR *registry_name);
